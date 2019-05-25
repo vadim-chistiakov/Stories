@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Bold.ttf">
+            <string>Lato-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="StoryIconCollectionViewCell" customModule="SmartU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="246" height="216"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="246" height="216"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundStoryIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ZLZ-OG-yNK">
+                        <rect key="frame" x="0.0" y="0.0" width="246" height="216"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxx-Ox-pr5">
+                        <rect key="frame" x="4" y="206" width="238" height="0.0"/>
+                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="10"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="ZLZ-OG-yNK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6Cy-9j-INW"/>
+                <constraint firstAttribute="bottom" secondItem="ZLZ-OG-yNK" secondAttribute="bottom" id="7vM-pe-Rp6"/>
+                <constraint firstItem="ZLZ-OG-yNK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="RoP-qS-sLr"/>
+                <constraint firstAttribute="trailing" secondItem="rxx-Ox-pr5" secondAttribute="trailing" constant="4" id="ZWX-xg-mJm"/>
+                <constraint firstItem="rxx-Ox-pr5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="pMx-4l-Rl9"/>
+                <constraint firstAttribute="trailing" secondItem="ZLZ-OG-yNK" secondAttribute="trailing" id="rfm-Iw-OvD"/>
+                <constraint firstAttribute="bottom" secondItem="rxx-Ox-pr5" secondAttribute="bottom" constant="10" id="wrN-bD-N9e"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="246" height="216"/>
+            <connections>
+                <outlet property="imageView" destination="ZLZ-OG-yNK" id="M2H-D6-2Fn"/>
+                <outlet property="titleLabel" destination="rxx-Ox-pr5" id="Mph-qv-TAD"/>
+            </connections>
+            <point key="canvasLocation" x="279.71014492753625" y="97.767857142857139"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="backgroundStoryIcon" width="464" height="614"/>
+    </resources>
+</document>
