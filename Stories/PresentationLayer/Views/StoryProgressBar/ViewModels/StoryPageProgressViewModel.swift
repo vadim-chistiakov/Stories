@@ -21,7 +21,7 @@ protocol StoryPageProgressViewModelDelegate: class {
 
 final class StoryPageProgressViewModel {
 
-    let action: Observable<StoryPageProgressViewModelAction?> = Dynamic(nil)
+    let action: Observable<StoryPageProgressViewModelAction?> = Observable(nil)
     private weak var delegate: StoryPageProgressViewModelDelegate?
 
     init(delegate: StoryPageProgressViewModelDelegate?) {

@@ -17,7 +17,7 @@ final class BaseStoryCellViewModel: StoryCellViewModel {
     weak var delegate: StoryCellViewModelDelegate?
     var currentPageIndex: Int? {
         guard let page = currentPage.value else { return nil }
-        return pages.index(of: page)
+        return pages.firstIndex(of: page)
     }
 
     private let pages: [StoryPage]

@@ -8,6 +8,6 @@
 
 
 protocol StoriesService: class {
-    typealias StoriesCompletion = (Result<[Story]>) -> Void
+    typealias StoriesCompletion = (Result<[Story], Error>) -> Void
     func requestStories(with completion: @escaping StoriesCompletion)
 }

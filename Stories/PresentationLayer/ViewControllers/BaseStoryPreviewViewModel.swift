@@ -12,7 +12,7 @@ import Foundation.NSURL
 final class BaseStoryPreviewViewModel: StoryPreviewViewModel {
 
     let currentStoryIndex: Observable<Int>
-    let action: Observable<StoryPreviewViewModelAction?> = Dynamic(nil)
+    let action: Observable<StoryPreviewViewModelAction?> = Observable(nil)
     var numberOfItems: Int { return viewModels.count }
 
     private let router: StoriesRouter

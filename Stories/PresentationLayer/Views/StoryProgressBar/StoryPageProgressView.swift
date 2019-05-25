@@ -16,14 +16,18 @@ final class StoryPageProgressView: UIView {
         didSet {
             bindViewModel()
         }
+        willSet {
+            disposal.removeAll()
+        }
     }
+    private var disposal = Disposal()
 
     private struct Constants {
         static let duration: TimeInterval = 12
     }
 
     private func bindViewModel() {
-        viewModel.action.bind { [weak self] in
+        viewModel.action.observe { [weak self] in
             guard let self = self, let action = $0 else { return }
             switch action {
             case .start:
@@ -37,7 +41,7 @@ final class StoryPageProgressView: UIView {
             case .reset:
                 self.reset()
             }
-        }
+        }.add(to: &disposal)
     }
 
 

@@ -10,7 +10,7 @@
 import UIKit
 import SDWebImage
 
-final class StoryCollectionViewCell: UICollectionViewCell, ConfigurableView {
+final class StoryCollectionViewCell: UICollectionViewCell {
 
     private struct Constants {
         static let minimumPressDuration: TimeInterval = 0.2
@@ -71,7 +71,9 @@ final class StoryCollectionViewCell: UICollectionViewCell, ConfigurableView {
     }
 
     private func configureGestures() {
-        addTapGestureRecognizer(target: self, action: #selector(didTapOnPage))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnPage))
+        addGestureRecognizer(tapGesture)
+        
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress))
         longPressGesture.minimumPressDuration = Constants.minimumPressDuration
         addGestureRecognizer(longPressGesture)

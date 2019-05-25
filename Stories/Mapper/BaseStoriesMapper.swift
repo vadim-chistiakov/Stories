@@ -19,6 +19,10 @@ private extension JSONKeys {
     static let imageDescription = JSONKey<String>("image_description")
 }
 
+enum NetworkError: Error {
+    case mapper
+}
+
 final class BaseStoriesMapper: StoriesMapper {
 
     func mapStories(from response: Any?) throws -> [Story] {

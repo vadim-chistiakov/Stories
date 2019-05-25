@@ -36,13 +36,13 @@ final class StoryProgressBar: UIView {
 
 
     private func createPageIndicators() {
-        removeAllSubviews()
+        subviews.forEach { view in view.removeFromSuperview() }
         var xPoint: CGFloat = Constants.padding * 2
         let width = (Constants.screenWidth - (CGFloat(viewModel.pagesCount - 1) * Constants.padding) - 2 * xPoint)/CGFloat(viewModel.pagesCount)
         for index in 0..<viewModel.pagesCount {
             let pageIndicatorPlaceholder = UIView(frame: CGRect(x: xPoint, y: Constants.yPoint, width: width, height: Constants.height))
             let pageIndicator = StoryPageProgressView(frame: CGRect(x: xPoint, y: Constants.yPoint, width: 0, height: Constants.height))
-            pageIndicator.viewModel = viewModel.viewModels[safe: index]
+            pageIndicator.viewModel = viewModel.viewModels[index]
             pageIndicator.width = width
             addSubview(applyProperties(pageIndicatorPlaceholder, alpha: Constants.placeholderAlpha))
             addSubview(applyProperties(pageIndicator))

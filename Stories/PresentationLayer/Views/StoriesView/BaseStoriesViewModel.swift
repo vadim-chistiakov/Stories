@@ -13,7 +13,7 @@ final class BaseStoriesViewModel: StoriesViewModel {
         return models.count
     }
 
-    let action: Dynamic<StoriesViewModelAction?> = Dynamic(nil)
+    let action: Observable<StoriesViewModelAction?> = Observable(nil)
 
     private let service: StoriesService
     private let router: StoriesRouter
@@ -26,7 +26,7 @@ final class BaseStoriesViewModel: StoriesViewModel {
     }
 
     func viewModelForItem(atIndex index: Int) -> StoryIconCellViewModel? {
-        guard let story = models[safe: index] else { return nil }
+        let story = models[index]
         return StoryIconCellViewModel(title: story.iconTitle, imageURL: story.iconURL)
     }
 

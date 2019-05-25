@@ -25,7 +25,12 @@ final class StoriesView: UIView {
         didSet {
             bindViewModel()
         }
+        willSet {
+            disposal.removeAll()
+        }
     }
+
+    private var disposal = Disposal()
 
     weak var delegate: StoriesViewDelegate?
 
@@ -53,21 +58,23 @@ final class StoriesView: UIView {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.registerNib(for: StoryIconCollectionViewCell.self)
-        addSubview(collectionView)
+        collectionView.register(StoryIconCollectionViewCell.self, forCellWithReuseIdentifier: "StoryIconCollectionViewCell")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        addFrameEqualityConstraints(to: collectionView)
+        collectionView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        collectionView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        collectionView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
 
     private func bindViewModel() {
-        viewModel.action.bind { [weak self] in
+        viewModel.action.observe { [weak self] in
             guard let action = $0 else { return }
             switch action {
             case .reload:
                 self?.collectionView.reloadData()
                 self?.collectionView.isUserInteractionEnabled = true
             }
-        }
+        }.add(to: &disposal)
     }
 
 }
@@ -78,10 +85,12 @@ extension StoriesView: UICollectionViewDataSource, UICollectionViewDelegateFlowL
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cellViewModel = viewModel.viewModelForItem(atIndex: indexPath.row) else {
-            return collectionView.dequeueCell(with: StoryIconCollectionViewCell.self, for: indexPath)
+        guard let cellViewModel = viewModel.viewModelForItem(atIndex: indexPath.row),
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryIconCollectionViewCell", for: indexPath) as? StoryIconCollectionViewCell else {
+                return collectionView.dequeueReusableCell(withReuseIdentifier: "StoryIconCollectionViewCell", for: indexPath)
         }
-        return collectionView.dequeue(StoryIconCollectionViewCell.self, at: indexPath, with: cellViewModel)
+        cell.configure(with: cellViewModel)
+        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView,

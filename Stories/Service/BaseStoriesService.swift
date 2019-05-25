@@ -23,13 +23,13 @@ final class BaseStoriesService: StoriesService {
     func requestStories(with completion: @escaping StoriesCompletion) {
         request("https://test.ru", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON(queue: BaseStoriesService.queue) { [weak self] dateResponse in
             guard let self = self else { return }
-            do {
-                let response = try result.unwrap()
-                let stories = try self.mapper.mapStories(from: response)
-                completion(.success(stories))
-            } catch {
-                completion(.failure(error))
-            }
+//            do {
+//                let response = try dateResponse.unwrap()
+//                let stories = try self.mapper.mapStories(from: response)
+//                completion(.success(stories))
+//            } catch {
+//                completion(.failure(error))
+//            }
         }
     }
 

@@ -13,7 +13,13 @@ final class StoryPreviewViewController: UIViewController, CircleTransitionable {
 
     @IBOutlet private weak var collectionView: UICollectionView!
 
-    var viewModel: StoryPreviewViewModel!
+    var viewModel: StoryPreviewViewModel! {
+        willSet {
+            disposal.removeAll()
+        }
+    }
+
+    private var disposal = Disposal()
     private var didLayoutSubviewsOnce: Bool = false
 
     override var prefersStatusBarHidden: Bool {
@@ -40,20 +46,21 @@ final class StoryPreviewViewController: UIViewController, CircleTransitionable {
 
     private func configure() {
         collectionView.decelerationRate = .fast
-        collectionView.registerNib(for: StoryCollectionViewCell.self)
+        collectionView.register(StoryCollectionViewCell.self, forCellWithReuseIdentifier: "StoryCollectionViewCell")
     }
 
     private func bindViewModel() {
-        viewModel.currentStoryIndex.bind { [weak self] index in
+        viewModel.currentStoryIndex.observe { [weak self] index in
             self?.scrollToStory(atIndex: index, animated: true)
-        }
-        viewModel.action.bind { [weak self] in
+        }.add(to: &disposal)
+
+        viewModel.action.observe { [weak self] in
             guard let action = $0 else { return }
             switch action {
             case .reload:
                 self?.collectionView.reloadData()
             }
-        }
+        }.add(to: &disposal)
     }
 
     private func scrollToStory(atIndex index: Int, animated: Bool) {
@@ -70,7 +77,7 @@ extension StoryPreviewViewController: UICollectionViewDataSource, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueCell(with: StoryCollectionViewCell.self, for: indexPath)
+        return collectionView.dequeueReusableCell(withReuseIdentifier: "StoryCollectionViewCell", for: indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
