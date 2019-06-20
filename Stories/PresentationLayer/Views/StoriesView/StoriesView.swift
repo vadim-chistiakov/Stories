@@ -40,6 +40,7 @@ final class StoriesView: UIView {
         layout.minimumLineSpacing = Constants.minimumLineSpacing
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isUserInteractionEnabled = false
+        collectionView.alwaysBounceHorizontal = true
         collectionView.backgroundColor = .clear
         return collectionView
     }()
@@ -55,10 +56,11 @@ final class StoriesView: UIView {
     }
 
     private func configure() {
+        addSubview(collectionView)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(StoryIconCollectionViewCell.self, forCellWithReuseIdentifier: "StoryIconCollectionViewCell")
+        collectionView.register(UINib(nibName: "StoryIconCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "StoryIconCollectionViewCell")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         collectionView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true

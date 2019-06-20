@@ -26,6 +26,7 @@ final class BaseStoriesViewModel: StoriesViewModel {
     }
 
     func viewModelForItem(atIndex index: Int) -> StoryIconCellViewModel? {
+        guard !models.isEmpty else { return nil }
         let story = models[index]
         return StoryIconCellViewModel(title: story.iconTitle, imageURL: story.iconURL)
     }

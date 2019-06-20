@@ -28,6 +28,7 @@ final class BaseStoriesRouter: StoriesRouter {
     func getConfiguredRootViewController() -> UIViewController {
         if let rootViewController = self.navigationController { return rootViewController }
         let viewController = TempStoriesViewController()
+        viewController.router = self
 
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.isNavigationBarHidden = true
@@ -39,7 +40,8 @@ final class BaseStoriesRouter: StoriesRouter {
     private func showStoryPreview(with viewModels: [StoryCellViewModel], startIndex index: Int) {
         guard let navigationController = self.navigationController else { return }
 
-        let viewController = StoryPreviewViewController()
+        let storyPreviewStoryboard = UIStoryboard.init(name: "Stories", bundle: nil)
+        guard let viewController = storyPreviewStoryboard.instantiateViewController(withIdentifier: "StoryPreviewViewController") as? StoryPreviewViewController else { return }
         viewController.viewModel = BaseStoryPreviewViewModel(router: self,
                                                              viewModels: viewModels,
                                                              startIndex: index)

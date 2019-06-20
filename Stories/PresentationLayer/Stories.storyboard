@@ -13,7 +13,7 @@
         <!--Story Preview View Controller-->
         <scene sceneID="LR6-ob-sQc">
             <objects>
-                <viewController storyboardIdentifier="StoryPreviewViewController" id="13S-pc-mbH" customClass="StoryPreviewViewController" customModule="SmartU" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryPreviewViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="13S-pc-mbH" customClass="StoryPreviewViewController" customModule="Stories" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V14-Dz-zAs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <viewLayoutGuide key="safeArea" id="Cfa-w8-Jfi"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="blY-R8-kXK" customClass="CollectionViewPagingLayout" customModule="SmartU" customModuleProvider="target">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="blY-R8-kXK" customClass="CollectionViewPagingLayout" customModule="Stories" customModuleProvider="target">
                                     <size key="itemSize" width="0.0" height="0.0"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>

@@ -46,7 +46,7 @@ final class StoryPreviewViewController: UIViewController, CircleTransitionable {
 
     private func configure() {
         collectionView.decelerationRate = .fast
-        collectionView.register(StoryCollectionViewCell.self, forCellWithReuseIdentifier: "StoryCollectionViewCell")
+        collectionView.register(UINib(nibName: "StoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "StoryCollectionViewCell")
     }
 
     private func bindViewModel() {
