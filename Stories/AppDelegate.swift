@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     private let router = BaseStoriesRouter()
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window?.rootViewController = router.getConfiguredRootViewController()
         window?.makeKeyAndVisible()

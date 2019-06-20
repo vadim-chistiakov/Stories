@@ -11,10 +11,8 @@ import UIKit
 
 final class BaseStoriesRouter: StoriesRouter {
 
-    private weak var navigationController: UINavigationController?
-    private var transitionCoordinator: TransitionCoordinator {
-        return TransitionCoordinator(circularTransition: CircularTransition())
-    }
+    private var navigationController: UINavigationController?
+    private let transitionCoordinator = TransitionCoordinator(circularTransition: CircularTransition())
 
     func route(to route: StoriesRoute) {
         switch route {
@@ -32,7 +30,6 @@ final class BaseStoriesRouter: StoriesRouter {
 
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.isNavigationBarHidden = true
-        navigationController.delegate = transitionCoordinator
         self.navigationController = navigationController
         return navigationController
     }
@@ -45,7 +42,7 @@ final class BaseStoriesRouter: StoriesRouter {
         viewController.viewModel = BaseStoryPreviewViewModel(router: self,
                                                              viewModels: viewModels,
                                                              startIndex: index)
-
+        navigationController.delegate = transitionCoordinator
         navigationController.pushViewController(viewController, animated: true)
     }
 
