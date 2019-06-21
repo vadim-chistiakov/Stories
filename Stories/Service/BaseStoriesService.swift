@@ -19,21 +19,17 @@ final class BaseStoriesService: StoriesService {
     }
 
     func requestStories(with completion: @escaping StoriesCompletion) {
-        request("https://test.ru", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON(queue: queue) { [weak self] dateResponse in
+        request("https://story-back1-develop.vapor.cloud/stories", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON(queue: queue) { [weak self] dataResponse in
             guard let self = self else { return }
-            DispatchQueue.main.async { [weak self] in
-                let stories = self?.generateTestViewModels()
-                completion(.success(stories!))
-                return
+            do {
+                let response = try dataResponse.result.unwrap()
+                let stories = try self.mapper.mapStories(from: response)
+                DispatchQueue.main.async {
+                    completion(.success(stories))
+                }
+            } catch {
+                completion(.failure(error))
             }
-            // Временно генерируем тестовые данные вручную
-//            do {
-//                let response = try dateResponse.unwrap()
-//                let stories = try self.mapper.mapStories(from: response)
-//                completion(.success(stories))
-//            } catch {
-//                completion(.failure(error))
-//            }
         }
     }
 

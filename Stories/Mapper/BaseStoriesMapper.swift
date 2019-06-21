@@ -11,12 +11,12 @@ import JASON
 
 private extension JSONKeys {
     static let stories = JSONKey<JSON>("stories")
-    static let iconURL = JSONKey<String>("icon_url")
-    static let iconTitle = JSONKey<String>("icon_title")
-    static let pageImageURL = JSONKey<String>("image_url")
-    static let pages = JSONKey<JSON>("screens")
-    static let imageTitle = JSONKey<String>("image_title")
-    static let imageDescription = JSONKey<String>("image_description")
+    static let iconURL = JSONKey<String>("iconURL")
+    static let iconTitle = JSONKey<String>("iconTitle")
+    static let pageImageURL = JSONKey<String>("imageURL")
+    static let pages = JSONKey<JSON>("pages")
+    static let imageTitle = JSONKey<String>("title")
+    static let imageDescription = JSONKey<String>("description")
 }
 
 enum NetworkError: Error {
@@ -26,7 +26,7 @@ enum NetworkError: Error {
 final class BaseStoriesMapper: StoriesMapper {
 
     func mapStories(from response: Any?) throws -> [Story] {
-        let jsonArray = JSON(response)[.stories].jsonArrayValue
+        let jsonArray = JSON(response).jsonArrayValue
         return jsonArray.compactMap { try? mapStory(from: $0) }
     }
 
